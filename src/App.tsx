@@ -19,7 +19,6 @@ function App() {
     }
 
     setHabits([...habits, newHabit])
-    console.log("Added Habit")
   }
 
 
@@ -28,12 +27,15 @@ function App() {
   }
 
 
-  const [editId, setEditId] = useState(null);
-  const [editInput, setEditInput] = useState("");
+  const [editId, setEditId] = useState<number | null>(null);
+  const [editInput, setEditInput] = useState<string>("");
 
-  function editHabit(habit) {
-    setEditId(habit.id);
-    setEditInput(habit.title);
+  function editHabit(id: number) {
+    setEditId(id);
+    const habitToEdit = habits.find(habit => habit.id === id);
+    if (habitToEdit) {
+      setEditInput(habitToEdit.title);
+    }
     console.log("Habit Edited")
   }
 

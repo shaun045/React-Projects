@@ -5,7 +5,7 @@ interface HabitProps {
   habits: Habit[]
   addHabit: () => void;
   deleteHabit: (id: number) => void;
-  editHabit: () => void;
+  editHabit: (id: number) => void;
 }
 
 export default function LeftSide({
@@ -80,7 +80,7 @@ export default function LeftSide({
                     <Button 
                       type='button' 
                       className='btn btn-success'
-                      onClick={editHabit}
+                      onClick={() => editHabit(habit.id)}
                     >
                       Edit
                     </Button>
