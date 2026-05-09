@@ -1,0 +1,230 @@
+body {
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.app-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+
+  min-height: 100vh;
+}
+
+/* LEFT + RIGHT */
+.left-section,
+.right-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* CARD */
+.section-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 20px;
+
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* WEEKLY */
+.this-week {
+  /* border: 1px solid; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  gap: 15px;
+}
+
+.first-section {
+  /* border: 1px solid; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.this-week h3{
+  /* border: 1px solid; */
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 10px;
+  font-weight: bold;
+
+  font-size: 30px;
+  width: 50%;
+}
+
+.weekly-wrapper {
+  /* border: 1px solid; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 0;
+}
+
+.week-bars {
+  display: flex;
+  gap: 20px;
+}
+
+.day-container {
+  text-align: center;
+}
+
+.day-bar {
+  width: 40px;
+  height: 120px;
+  background-color: #343a40;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  
+}
+
+.second-section {
+  /* border: 1px solid; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 15px;
+  margin-right: 10px;
+  margin-bottom: 25px;
+}
+
+.overall-progress {
+  /* border: 1px solid; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.circle-progress {
+  width: 120px;
+  height: 120px;
+
+  border-radius: 50%;
+  background-color: #0d6efd;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+
+  margin-top: 10px;
+}
+
+/* TITLES */
+.title-center {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* HABIT ACTIONS */
+.habit-actions {
+  /* border: 1px solid; */
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 300px;
+  width: 100%;
+}
+
+.habit-actions button {
+  width: 350px;
+}
+
+/* HABIT LIST */
+.habit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.habit-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: #f1f1f1;
+  padding: 0px 15px;
+  line-height: 0;
+
+  border-radius: 10px;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.habit-item label {
+  display: flex;
+  justify-content: space-between;
+  width:100%;
+}
+
+.habit-item label input {
+  transform: scale(1.5);
+}
+
+.habit-item label h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.habit-buttons {
+  display: flex;
+  gap: 10px;
+  margin: 5px 0px;
+}
+
+/* CALENDAR */
+.calendar-card {
+  flex: 1;
+}
+
+.calendar-placeholder {
+  height: 500px;
+  background-color: #e9e9e9;
+  border-radius: 10px;
+
+  margin-top: 20px;
+}
+
+/* STREAK */
+.streak-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 250px;
+}
+
+.streak-box {
+  width: 180px;
+  height: 180px;
+
+  background-color: #343a40;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 12px;
+}
