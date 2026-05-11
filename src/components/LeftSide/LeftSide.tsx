@@ -1,11 +1,24 @@
 import { Button } from 'react-bootstrap'
 import type { Habit } from '../../App'
+import WeeklyProgress from './WeeklyProgress'
 
 interface HabitProps {
   habits: Habit[]
   addHabit: () => void;
   deleteHabit: (id: number) => void;
   editHabit: (id: number) => void;
+
+  editId: number | null;
+  editInput: string;
+  setEditInput: (value: string) => void;
+  saveHabit: () => void;
+
+  today: string;
+  toggleDay: (id: number, day: string) => void;
+
+  filter: string;
+  setFilter: (value: string) => void;
+  filterHabits: Habit[];
 }
 
 export default function LeftSide({
@@ -13,37 +26,25 @@ export default function LeftSide({
     addHabit, 
     deleteHabit, 
     editHabit,
+    editId,
+    editInput,
+    setEditInput,
+    saveHabit,
+    today,
+    toggleDay,
+    filter,
+    setFilter,
+    filterHabits
   }: HabitProps) {
   return (
     <div className="left-section">
 
         {/* WEEKLY PROGRESS */}
-        <div className="section-card this-week">
-          <div className='first-section'>
-            <h3>This Week</h3>
-            <div className="weekly-wrapper">
-              <div className="week-bars">
-                {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
-                  <div key={day} className="day-container">
-                    <div className="day-bar"></div>
-                    <p>{day}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className='second-section'>
-            <div className="overall-progress">
-              <p>Overall Progress</p>
-
-              <div className="circle-progress">
-                7/7
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <WeeklyProgress 
+          habits={habits}
+          today={today}
+        />
+        
         {/* HABIT LIST */}
         <div className="section-card">
 
@@ -61,29 +62,56 @@ export default function LeftSide({
 
             <select 
               className="form-select filter-habits" 
-              aria-label="Default select example">
-              <option value="1">All</option>
-              <option value="2">Done</option>
-              <option value="3">Not Done</option>
+              aria-label="Default select example"
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+            >
+              <option value="all">All</option>
+              <option value="done">Done</option>
+              <option value="not-done">Not Done</option>
             </select>
           </div>
 
           <div className="habit-list">
-            {habits.map((habit) => (
+            {filterHabits.map((habit) => (
 
               <div className="habit-item" key={habit.id}>
                 <label>
-                  <input type="checkbox" />
-                  <h3>{habit.title}</h3>
-                
+                  <input 
+                    type="checkbox" 
+                    checked={habit.completedDays.includes(today)}
+                    onChange={() => toggleDay(habit.id, today)}
+                  />
+                  {editId === habit.id ? (
+                    <input 
+                      className='edit-habit-input'
+                      type="text"
+                      value={editInput}
+                      onChange={(e) => setEditInput(e.target.value)}
+                    />
+                  ) : (
+                    <h3>{habit.title}</h3>
+                  )}
+                  
                   <div className="habit-buttons">
-                    <Button 
-                      type='button' 
-                      className='btn btn-success'
-                      onClick={() => editHabit(habit.id)}
-                    >
-                      Edit
+                    {editId === habit.id ? (
+                      <Button 
+                        type='button' 
+                        className='btn btn-success'
+                        onClick={() => saveHabit()}
+                      >
+                        Save
+                      </Button>
+                    ) : (
+                      <Button 
+                        type='button' 
+                        className='btn btn-success'
+                        onClick={() => editHabit(habit.id)}
+                      >
+                        Edit
                     </Button>
+                    )}
+                    
                     <Button 
                       type='button' 
                       className='btn btn-danger'

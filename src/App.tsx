@@ -6,6 +6,7 @@ import LeftSide from './components/LeftSide/LeftSide'
 export interface Habit {
   id: number;
   title: string;
+  completedDays: string[];
 }
 
 function App() {
@@ -15,10 +16,25 @@ function App() {
   function addHabit() {
     const newHabit = {
       id: Date.now(),
-      title: "Habit title"
+      title: "Habit title",
+      completedDays: []
     }
 
     setHabits([...habits, newHabit])
+  }
+  const today = ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'][new Date().getDay()];
+
+  function toggleDay(id: number, day: string) {
+    setHabits(habits.map(habit => {
+      if (habit.id !== id) return habit;
+      const alreadyDone = habit.completedDays.includes(day);
+      return {
+        ...habit,
+        completedDays: alreadyDone
+          ? habit.completedDays.filter(d => d !== day)
+          : [...habit.completedDays, day]
+      }
+    }))
   }
 
 
@@ -39,6 +55,26 @@ function App() {
     console.log("Habit Edited")
   }
 
+  function saveHabit() {
+    setHabits(habits.map(habit => 
+      habit.id === editId
+        ? {...habit, title: editInput}
+        : habit
+    ));
+    setEditId(null);
+    setEditInput("");
+  }
+
+  
+  const [filter, setFilter] = useState("all");
+
+  const filterHabits = habits.filter(habit => {
+    const done = habit.completedDays.includes(today);
+
+    if (filter === "done") return done;
+    if (filter === "not-done") return !done;
+    return true;
+  });
 
   return (
     <div className="app-container">
@@ -48,6 +84,18 @@ function App() {
         addHabit={addHabit}
         deleteHabit={deleteHabit}
         editHabit={editHabit}
+
+        editId={editId}
+        editInput={editInput}
+        setEditInput={setEditInput}
+        saveHabit={saveHabit}
+
+        toggleDay={toggleDay}
+        today={today}
+
+        filter={filter}
+        setFilter={setFilter}
+        filterHabits={filterHabits}
       />
 
       {/* RIGHT SIDE */}
