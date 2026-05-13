@@ -124,6 +124,11 @@ export default function LeftSide({
               </div>
 
             ))}
+            {filterHabits.length === 0 && (
+              <p className='empty-habit'>
+                No Habits yet. Add a new one.
+              </p>
+            )}
           </div>
 
         </div>

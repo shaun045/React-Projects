@@ -171,6 +171,14 @@ body {
   gap: 15px;
 }
 
+.empty-habit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 25px;
+}
+
 .habit-item {
   display: flex;
   justify-content: space-between;
@@ -236,6 +244,16 @@ body {
   margin-top: 20px;
 }
 
+.react-calendar {
+  font-size: 20px !important;
+  width: 100% !important;
+  padding: 10px;
+}
+
+.react-calendar__tile {
+  padding: 20px 8px !important;
+}
+
 /* STREAK */
 .streak-card {
   display: flex;
@@ -258,4 +276,14 @@ body {
   align-items: center;
 
   border-radius: 12px;
+}
+
+.fully-completed {
+  background-color: #4caf50 !important;
+  color: white !important;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;    /* forces square shape */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
